@@ -8,23 +8,26 @@ class App extends Component {
   
   constructor() {
     super();
-    this.notas = [];
-    this.state = {}
+
+    this.state = {
+      notas:[]
+    }
   }
 
   criarNota(titulo, texto) {
     const novaNota = {titulo, texto};
-    this.notas.push(novaNota);
-    this.setState({
-      notas:this.notas
-    })
+    const novoArrayNotas = [...this.state.notas,novaNota]
+    const novoEstado = {
+      notas:novoArrayNotas
+    }
+    this.setState(novoEstado);
   }
 
   render() {
     return (
       <div className="conteudo">
         <Formulario criarNota={this.criarNota.bind(this)} />
-        <ListaDeNotas notas= {this.notas}/>
+        <ListaDeNotas notas= {this.state.notas}/>
       </div>
     );
   }
