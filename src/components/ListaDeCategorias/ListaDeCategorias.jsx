@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./ListaDeCategorias.css";
 
 class ListaDeCategorias extends Component {
-  
-    _handlerEventInput(e) {
+  _handlerEventInput(e) {
     console.log(e.key);
     if (e.key === "Enter") {
-      console.log("adicionar categoria");
+      let valorCategoria = e.target.value;
+      this.props.adicionarCategoria(valorCategoria);
     }
   }
 
@@ -14,10 +14,13 @@ class ListaDeCategorias extends Component {
     return (
       <div className="lista-categorias">
         <ul className="lista-categorias_lista">
-          <li className="lista-categorias_item">Categorias</li>
-          <li className="lista-categorias_item">Categorias</li>
-          <li className="lista-categorias_item">Categorias</li>
-          <li className="lista-categorias_item">Categorias</li>
+          {this.props.categorias.map((categoria, index) => {
+            return (
+              <li key={index} className="lista-categorias_item">
+                {categoria}
+              </li>
+            );
+          })}
         </ul>
         <input
           type="text"
